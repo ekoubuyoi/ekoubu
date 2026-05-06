@@ -1,14 +1,20 @@
 import Image from "next/image";
 
+// to automatically import recent projects
+import { projects } from "@/data/projects";
 export default function Home() {
+
+  // Get the last project in the array
+  const recentProject = projects.length > 0 ? projects[projects.length - 1] : null;
+
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col items-center justify-between bg-white px-16 py-22 dark:bg-black sm:items-start">
+    <main className="mx-auto flex w-full max-w-3xl flex-col items-start justify-between bg-white px-6 sm:px-10 md:px-10 pt-10 sm:pt-24 md:pt-20 pb-6 sm:pb-8 dark:bg-black">
 
       {/* pfp and text info */}
-      <div className="flex items-center gap-5">
-        
+      <div className="flex items-center sm:mt-6 mt-2 gap-5">
+
         {/* pfp */}
-        <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden border-3 dark:border-gray-800 rounded-full grayscale">
+        <div className="relative h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden border-3 dark:border-gray-800 rounded-full grayscale">
           <Image
             src="/images/pfp.jpg"
             alt="Logo"
@@ -19,20 +25,71 @@ export default function Home() {
 
         {/* texts */}
         <div className="flex flex-col">
-          <h1 className="text-2xl font-bold text-black dark:text-white">
+          <h1 className="text-xl underline decoration-2 underline-offset-5 sm:text-2xl font-bold text-black dark:text-white">
             Ekoubuyoi
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-sm mt-1 sm:text-base text-gray-600 dark:text-gray-400">
             Developer
           </p>
         </div>
       </div>
 
       {/* other stuffs/info */}
-      <div className="py-8">
-        <h1> Hi! I'</h1>
-      </div>
+      <div className="py-8 w-full">
+        <h1 className="border-l-3 pl-5 text-base sm:text-lg leading-relaxed text-zinc-800 dark:text-zinc-200">
+          Hey! I am Ekoubuyoi, also known as bukonatnat. If y'all don't know I am studying at { }
+          <a className="hover:underline font-bold" href="https://usa.edu.ph/">USA</a> and taking
+          Computer Science as my course.
+        </h1>
 
+        <h1 className="border-l-3 pl-5 mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed text-zinc-800 dark:text-zinc-200">
+          At the moment, I still don't know my niche, but I'm into cybersecurity and web development. I know
+          some basic knowledge in some programming language such as C, C++, and Web Development.
+        </h1>
+
+        <h1 className="border-l-3 pl-5 mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed text-zinc-800 dark:text-zinc-200">
+          I'm a total tech geek at heart who loves linux. One of my dreams is to
+          build raspberry pi typa shi cyberdeck in the future just only for my satisfaction. Plus,
+          I really need a thinkpad.
+        </h1>
+
+        <h1 className="border-l-3 pl-5 mb-1 mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed text-zinc-800 dark:text-zinc-200">
+          Sometimes, I write something about techs or sum stuffs when I am bored. You can check it if u like at my { }
+          <a className="underline font-bold" href="/blogs">blogs</a>.
+        </h1>
+
+        {/* projects list */}
+        <div className="py-6 w-full flex flex-col gap-4">
+          <h1 className="text-xl sm:text-2xl font-bold dark:text-white">Recent Projects</h1>
+
+          {recentProject ? (
+            <div key={recentProject.id} className="border-[3px] border-black dark:border-white p-6 rounded-xl bg-white dark:bg-zinc-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none">
+              <div className="flex flex-col gap-2">
+                <h3 className="text-lg font-bold underline underline-offset-4 decoration-2">
+                  {recentProject.title}
+                </h3>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  {recentProject.description}
+                </p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {recentProject.tags.map((tag, index) => (
+                    <span key={index} className="text-[10px] font-bold border border-black dark:border-zinc-500 px-2 py-0.5 rounded uppercase tracking-tighter">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="border-[3px] border-dashed border-zinc-400 p-6 rounded-xl text-center text-zinc-500">
+              No projects found. Check back later!
+            </div>
+          )}
+        </div>
+
+      </div>
     </main>
   );
 }

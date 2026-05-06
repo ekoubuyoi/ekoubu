@@ -12,11 +12,21 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "1",
-    title: "Example Project",
-    description: "A stunning portfolio project demonstrating modern web technologies.",
+    title: "Learning out of Messy Piles",
+    description: "i forgot about this",
     slug: "example-project",
-    image: "/images/placeholder.jpg",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+    image: "/images/loomp.jpg",
+    tags: ["C#",],
+    github: "https://github.com",
+  },
+
+  {
+    id: "2",
+    title: "SACM",
+    description: "Clinic System",
+    slug: "example-project",
+    image: "/images/SACM2.jpg",
+    tags: ["Next.js", "Tailwind", "TypeScript"],
     github: "https://github.com",
   },
   // Add more projects here
