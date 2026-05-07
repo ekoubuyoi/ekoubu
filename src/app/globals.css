@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #D7D3C9
-  --foreground: #171717;
+  --background: #D7D3C9 --foreground: #171717;
 }
 
 @theme inline {
@@ -11,12 +10,6 @@
   --font-sans: var(--font-ubuntu), ui-sans-serif, system-ui;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #D7D3C9;
-    --foreground: #ededed;
-  }
-}
 
 body {
   background: var(--background);

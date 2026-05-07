@@ -26,7 +26,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-zinc-50 dark:bg-black">
         <Navbar />
-        <main>{children}</main>
+        <main className="sm:border-none border-r-[4px] border-b-[4px] border-l-[4px] ">{children}</main>
       </body>
     </html>
   );
