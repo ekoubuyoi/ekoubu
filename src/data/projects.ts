@@ -22,12 +22,12 @@ export const projects: Project[] = [
 
   {
     id: "2",
-    title: "SACM",
-    description: "Clinic System",
+    title: "San Agustin Clinic — Portal",
+    description: "San Agustin’s full-stack system streamlines student health services and clinic administration into one integrated platform.",
     slug: "example-project",
     image: "/images/SACM2.jpg",
     tags: ["Next.js", "Tailwind", "TypeScript"],
-    github: "https://github.com",
+    github: "https://github.com/matchaejayyy/Computer-Programming-2-",
   },
   // Add more projects here
 ];

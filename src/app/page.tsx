@@ -36,7 +36,13 @@ export default function Home() {
 
       {/* other stuffs/info */}
       <div className="py-8 w-full">
-        <h1 className="border-l-3 pl-5 text-base sm:text-lg leading-relaxed text-zinc-800 dark:text-zinc-200">
+        {/* note */}
+        <h1 className="border-l-3 pl-5 border-[#983D3C] text-[#983D3C] text-base sm:text-lg leading-relaxed">
+          Note: This website is still a work in progress! Some feature might not work properly, sorry for the inconvenience.
+          I'll fix it soon :&gt;
+        </h1>
+
+        <h1 className="border-l-3 mt-4 pl-5 text-base sm:text-lg leading-relaxed text-zinc-800 dark:text-zinc-200">
           Hey! I am Ekoubuyoi, also known as bukonatnat. If y'all don't know I am studying at { }
           <a className="hover:underline font-bold" href="https://usa.edu.ph/">USA</a> and taking
           Computer Science as my course.
@@ -63,7 +69,13 @@ export default function Home() {
           <h1 className="text-xl sm:text-2xl font-bold dark:text-white">Recent Projects</h1>
 
           {recentProject ? (
-            <div key={recentProject.id} className="border-[3px] border-black dark:border-white p-6 rounded-xl bg-white dark:bg-zinc-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none">
+            <a
+              key={recentProject.id}
+              href={recentProject.github} // Make sure 'githubUrl' exists in your projects data
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block border-[3px] border-black dark:border-white p-6 rounded-xl bg-white dark:bg-zinc-900 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none cursor-pointer"
+            >
               <div className="flex flex-col gap-2">
                 <h3 className="text-lg font-bold underline underline-offset-4 decoration-2">
                   {recentProject.title}
@@ -81,7 +93,7 @@ export default function Home() {
                   ))}
                 </div>
               </div>
-            </div>
+            </a>
           ) : (
             <div className="border-[3px] border-dashed border-zinc-400 p-6 rounded-xl text-center text-zinc-500">
               No projects found. Check back later!
