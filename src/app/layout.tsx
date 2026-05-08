@@ -24,7 +24,7 @@ export default function RootLayout({
       lang="en"
       className={`${ubuntu.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-zinc-50 dark:bg-black">
+      <body className="min-h-full flex flex-col bg-zinc-50">
         <Navbar />
         <main className="sm:border-none border-r-[4px] border-b-[4px] border-l-[4px] ">{children}</main>
       </body>

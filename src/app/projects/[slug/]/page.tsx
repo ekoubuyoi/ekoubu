@@ -10,7 +10,7 @@ export default async function ProjectDetailPage({ params }: { params: { slug: st
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col bg-white px-16 py-32 dark:bg-black min-h-screen">
+    <main className="mx-auto flex w-full max-w-3xl flex-col bg-white px-16 py-32 min-h-screen">
       <Link href="/projects" className="text-sm text-muted-foreground hover:text-primary mb-8 inline-block">
         ← Back to Projects
       </Link>
@@ -25,7 +25,7 @@ export default async function ProjectDetailPage({ params }: { params: { slug: st
       <div className="aspect-video bg-muted rounded-2xl mb-12 flex items-center justify-center text-muted-foreground italic">
         Hero Image Placeholder
       </div>
-      <div className="prose prose-neutral dark:prose-invert max-w-none">
+      <div className="prose prose-neutral max-w-none">
         <h2 className="text-2xl font-semibold mb-4">About this project</h2>
         <p className="text-lg leading-relaxed text-muted-foreground">
           {project.description}
