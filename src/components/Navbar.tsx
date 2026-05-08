@@ -77,7 +77,7 @@ export default function Navbar() {
               key={item.path}
               href={item.path}
               onClick={() => setIsOpen(false)}
-              className={`font-ubuntu text-md font-bold transition-all hover:translate-x-2 ${pathname === item.path
+              className={`font-ubuntu text-md transition-all hover:translate-x-2 ${pathname === item.path
                 ? "text-black underline decoration-4 underline-offset-8"
                 : "text-zinc-500"
                 }`}
