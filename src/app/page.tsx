@@ -8,7 +8,7 @@ export default function Home() {
   const recentProject = projects.length > 0 ? projects[projects.length - 1] : null;
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col items-start justify-between bg-white px-6 sm:px-10 md:px-10 pt-10 sm:pt-24 md:pt-20 pb-6 sm:pb-8">
+    <main className="mx-auto flex w-full max-w-3xl flex-col items-start justify-between bg-white px-6 sm:px-10 md:px-10 pt-6 sm:pt-24 md:pt-20 pb-6 sm:pb-8">
 
       {/* pfp and text info */}
       <div className="flex items-center sm:mt-6 mt-2 gap-5">
