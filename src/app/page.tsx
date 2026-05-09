@@ -28,7 +28,7 @@ export default function Home() {
           <h1 className="text-xl underline decoration-2 underline-offset-5 sm:text-2xl font-bold text-black">
             Ekoubuyoi
           </h1>
-          <p className="text-sm mt-1 sm:text-base text-gray-600">
+          <p className="text-base mt-1 sm:text-lg text-gray-600">
             Developer
           </p>
         </div>

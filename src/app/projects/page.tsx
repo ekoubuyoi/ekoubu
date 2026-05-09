@@ -12,7 +12,7 @@ export default function ProjectsPage() {
         <h1 className="text-xl sm:text-3xl font-bold text-black">
           Projects
         </h1>
-        <p className="mt-1 text-sm sm:text-base text-gray-600">
+        <p className="mt-1 text-base sm:text-lg text-gray-600">
           just some things I made
         </p>
       </div>
@@ -44,14 +44,12 @@ export default function ProjectsPage() {
                 ))}
               </div>
 
-              <div className="mt-auto">
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="inline-flex items-center justify-center font-bold border-2 border-black rounded-lg transition-colors bg-black text-white hover:bg-white hover:text-black h-9 px-4 py-2 w-full text-sm"
-                >
-                  View Details
-                </Link>
-              </div>
+              <a 
+                href={project.github}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="mt-auto inline-flex items-center justify-center font-bold border-2 border-black rounded-lg transition-colors bg-black text-white hover:bg-white hover:text-black h-9 px-4 py-2 w-full text-sm"
+              >Visit on Github</a>
             </div>
           </div>
         ))}

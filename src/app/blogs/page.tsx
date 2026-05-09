@@ -12,7 +12,7 @@ export default function BlogsPage() {
                 <h1 className="text-xl sm:text-3xl font-bold text-black">
                     Blogs
                 </h1>
-                <p className="mt-1 text-sm sm:text-base text-gray-600">
+                <p className="mt-1 text-base sm:text-lg text-gray-600">
                     just some things I wrote
                 </p>
 

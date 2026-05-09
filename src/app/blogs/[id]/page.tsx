@@ -46,12 +46,12 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ id:
                             h1: ({ children }) => <h1 className="text-3xl font-bold mb-6 border-b-4 border-black pb-2">{children}</h1>,
                             h2: ({ children }) => <h2 className="text-2xl font-bold mt-10 mb-4 bg-black text-white px-4 py-1 inline-block">{children}</h2>,
                             h3: ({ children }) => <h3 className="text-xl font-bold mt-8 mb-3 underline decoration-4 underline-offset-4">{children}</h3>,
-                            p: ({ children }) => <p className="text-lg text-zinc-800 leading-relaxed mb-6">{children}</p>,
+                            p: ({ children }) => <p className="text-base sm:text-lg text-zinc-800 leading-relaxed mb-6">{children}</p>,
                             ul: ({ children }) => <ul className="list-none space-y-2 mb-6 ml-4">{children}</ul>,
                             li: ({ children }) => (
                                 <li className="flex items-start">
                                     <span className="mr-2 mt-1.5 h-3 w-3 border-2 border-black bg-black shrink-0" />
-                                    <span className="text-lg text-zinc-800">{children}</span>
+                                    <span className="text-base sm:text-lg text-zinc-800">{children}</span>
                                 </li>
                             ),
                             code: ({ children }) => (

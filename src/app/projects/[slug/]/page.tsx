@@ -27,7 +27,7 @@ export default async function ProjectDetailPage({ params }: { params: { slug: st
       </div>
       <div className="prose prose-neutral max-w-none">
         <h2 className="text-2xl font-semibold mb-4">About this project</h2>
-        <p className="text-lg leading-relaxed text-muted-foreground">
+        <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
           {project.description}
         </p>
         {/* Add more detailed content here */}
