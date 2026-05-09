@@ -44,12 +44,12 @@ export default function ProjectsPage() {
                 ))}
               </div>
 
-              <a 
+              <a
                 href={project.github}
-                target="_blank" 
+                target="_blank"
                 rel="noopener noreferrer"
                 className="mt-auto inline-flex items-center justify-center font-bold border-2 border-black rounded-lg transition-colors bg-black text-white hover:bg-white hover:text-black h-9 px-4 py-2 w-full text-sm"
-              >Visit on Github</a>
+              >View on Github</a>
             </div>
           </div>
         ))}
