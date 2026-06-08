@@ -19,7 +19,9 @@ export default function Home() {
               src="/images/pfp.jpg"
               alt="Logo"
               fill
+              sizes="(max-width: 640px) 64px, 80px"
               className="object-cover"
+              priority // Optional: Add this if the profile picture is above the fold (visible immediately on load)
             />
           </div>
 
