@@ -11,27 +11,40 @@ export default function Home() {
     <main className="mx-auto flex w-full max-w-3xl flex-col items-start justify-between bg-white px-10 sm:px-10 md:px-10 pt-6 sm:pt-24 md:pt-20 pb-6 sm:pb-8">
 
       {/* pfp and text info */}
-      <div className="flex items-center sm:mt-6 mt-2 gap-5">
+      <div className="flex items-center justify-between sm:mt-6 mt-2 w-full">
 
-        {/* pfp */}
-        <div className="relative h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden border-3 rounded-full grayscale">
-          <Image
-            src="/images/pfp.jpg"
-            alt="Logo"
-            fill
-            className="object-cover"
-          />
+        {/* pfp + name */}
+        <div className="flex items-center gap-5">
+          {/* pfp */}
+          <div className="relative h-16 w-16 sm:h-20 sm:w-20 flex-shrink-0 overflow-hidden border-3 rounded-full grayscale">
+            <Image
+              src="/images/pfp.jpg"
+              alt="Logo"
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* texts */}
+          <div className="flex flex-col">
+            <h1 className="text-xl underline decoration-2 underline-offset-5 sm:text-2xl font-bold text-black">
+              Ekoubuyoi
+            </h1>
+            <p className="text-base mt-1 sm:text-lg text-gray-600">
+              Developer
+            </p>
+          </div>
         </div>
 
-        {/* texts */}
-        <div className="flex flex-col">
-          <h1 className="text-xl underline decoration-2 underline-offset-5 sm:text-2xl font-bold text-black">
-            Ekoubuyoi
-          </h1>
-          <p className="text-base mt-1 sm:text-lg text-gray-600">
-            Developer
-          </p>
-        </div>
+        {/* resume link */}
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm sm:text-base font-medium text-zinc-700 underline underline-offset-4 decoration-zinc-400 hover:text-black hover:decoration-black transition-colors"
+        >
+          Resume ↗
+        </a>
       </div>
 
       {/* other stuffs/info */}
