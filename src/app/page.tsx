@@ -35,7 +35,7 @@ export default function Home() {
         <div className="flex flex-col gap-2">
           {/* github link */}
           <a
-            href="/resume.pdf"
+            href="https://github.com/ekoubuyoi"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm sm:text-base font-medium text-zinc-700 underline underline-offset-4 decoration-zinc-400 hover:text-black hover:decoration-black transition-colors"
