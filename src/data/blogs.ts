@@ -26,18 +26,8 @@ is still zero. So yeah I gotta start because my next school year is near :>
 I started to study with the help of one of my trusted friend, Gemini. Anyways, since I've studied C, C++ before I decided to start
 understanding Functions and its syntax.
 
-Base on our CS121 - Computer Programming 2 (LEC), this is our Module 4.
-
-Plans:
-[] Anatomy of a Fast Functions
-  [] Pass by Value 
-  [] Pass by Reference 
-  [] Pass by Constant Reference 
-
-[] Speed Trick: Inline Functions
-
-What are my thoughts about it?
-
+I learned how to use function and call functions inside main, which is kind of hard for me before, but now I realized that it's not that 
+hard.
 `,
     },
 ];
