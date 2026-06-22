@@ -85,7 +85,7 @@ export default function BlogDetailPage({ params }: PageProps) {
                         [&_.blog-inline-img]:w-full 
                         [&_.blog-inline-img]:h-44
                         sm:[&_.blog-inline-img]:h-64
-                        md:[&_.blog-inline-img]:h-80
+                        md:[&_.blog-inline-img]:h-full
                         [&_.blog-inline-img]:object-cover 
                         [&_.blog-inline-img]:overflow-hidden 
                         [&_.blog-inline-img]:rounded-xl 
