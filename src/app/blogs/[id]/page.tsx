@@ -90,7 +90,10 @@ export default function BlogDetailPage({ params }: PageProps) {
                         [&_.blog-inline-img]:overflow-hidden 
                         [&_.blog-inline-img]:rounded-xl 
                         [&_.blog-inline-img]:border-[3px] 
-                        [&_.blog-inline-img]:border-black"
+                        [&_.blog-inline-img]:border-black
+                        
+                        [&_.blog-note]:text-[#983D3C] 
+                        [&_.blog-note]:inline-block"
                         dangerouslySetInnerHTML={{ __html: blog.content }}
                     />
 
