@@ -13,6 +13,8 @@ const PALETTE_COLORS = [
   { name: "Orange", hex: "#f97316" },
 ];
 
+const CANVAS_SIZE = 500;
+
 export default function ConnectPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -22,11 +24,10 @@ export default function ConnectPage() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   
-  // Brush styling tool states
   const [currentColor, setCurrentColor] = useState("#000000");
   const [isEraser, setIsEraser] = useState(false);
 
-  // 1. Fetch existing doodles from the database on page load
+  // Fetch existing doodles on page load
   useEffect(() => {
     async function loadInitialData() {
       try {
@@ -41,20 +42,30 @@ export default function ConnectPage() {
     loadInitialData();
   }, []);
 
-  // Sync canvas brush context whenever the tool parameters change
+  // Sync canvas brush context whenever tool parameters change
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    
+
     ctx.strokeStyle = isEraser ? "#ffffff" : currentColor;
-    ctx.lineWidth = isEraser ? 20 : 4; // Extra thick eraser for better feel
+    ctx.lineWidth = isEraser ? 24 : 4;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
   }, [currentColor, isEraser]);
 
-  // Drawing Handlers
+  // Get correct coordinates accounting for canvas display vs internal size
+  const getCoordinates = (e: any, canvas: HTMLCanvasElement) => {
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return {
+      x: (clientX - rect.left) * (canvas.width / rect.width),
+      y: (clientY - rect.top) * (canvas.height / rect.height),
+    };
+  };
+
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -81,16 +92,6 @@ export default function ConnectPage() {
 
   const stopDrawing = () => setIsDrawing(false);
 
-  const getCoordinates = (e: any, canvas: HTMLCanvasElement) => {
-    const rect = canvas.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    return {
-      x: clientX - rect.left,
-      y: clientY - rect.top,
-    };
-  };
-
   const clearCanvas = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -99,7 +100,6 @@ export default function ConnectPage() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   };
 
-  // 2. Form submission handler talking directly to your Server Action
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const canvas = canvasRef.current;
@@ -118,11 +118,8 @@ export default function ConnectPage() {
       const result = await saveDoodle(payload);
 
       if (result.success) {
-        // Refresh local view immediately
         const updatedData = await getDoodles();
         setSubmissions(updatedData);
-        
-        // Reset inputs
         setComment("");
         setName("");
         clearCanvas();
@@ -173,8 +170,8 @@ export default function ConnectPage() {
         <div className="flex flex-col border-[3px] border-black rounded-xl overflow-hidden relative">
           
           {/* Custom Paint Toolbar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-black bg-gray-50 px-4 py-2 text-xs font-bold">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b-[3px] border-black bg-gray-50 px-4 py-2 text-xs font-bold">
+            <div className="flex items-center gap-2 flex-wrap">
               <span className="text-gray-500 uppercase tracking-tight">Color:</span>
               <div className="flex items-center gap-1.5">
                 {PALETTE_COLORS.map((col) => (
@@ -187,13 +184,24 @@ export default function ConnectPage() {
                       setIsEraser(false);
                     }}
                     style={{ backgroundColor: col.hex }}
-                    className={`h-6 w-6 rounded-full border-2 border-black transition-transform active:scale-95 ${
+                    className={`h-6 w-6 rounded-full border-[3px] border-black transition-transform active:scale-95 ${
                       currentColor === col.hex && !isEraser 
-                        ? 'scale-110 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' 
+                        ? 'scale-100 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]' 
                         : 'opacity-80 hover:opacity-100'
                     }`}
                   />
                 ))}
+                {/* Custom color picker */}
+                <input
+                  type="color"
+                  value={currentColor}
+                  onChange={(e) => {
+                    setCurrentColor(e.target.value);
+                    setIsEraser(false);
+                  }}
+                  title="Pick custom color"
+                  className="h-6 w-6 rounded-sm border-[3px] border-black cursor-pointer p-0.5"
+                />
               </div>
             </div>
 
@@ -219,12 +227,12 @@ export default function ConnectPage() {
             </div>
           </div>
 
-          {/* Core Interactive Whiteboard */}
+          {/* Square Canvas — perfect for mobile doodling */}
           <canvas
             ref={canvasRef}
-            width={700}
-            height={280}
-            className="w-full h-[280px] bg-white cursor-crosshair touch-none"
+            width={CANVAS_SIZE}
+            height={CANVAS_SIZE}
+            className="w-full aspect-square bg-white cursor-crosshair touch-none"
             onMouseDown={startDrawing}
             onMouseMove={draw}
             onMouseUp={stopDrawing}
