@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Home, Briefcase, BookText } from "lucide-react"; // Import the icons
+import { Home, Briefcase, BookText, MessagesSquare } from "lucide-react"; // Import the icons
 
 const navItems = [
   {
@@ -20,6 +20,11 @@ const navItems = [
     name: "Blogs",
     path: "/blogs",
     icon: BookText,
+  },
+  {
+    name: "Connect",
+    path: "/connect",
+    icon: MessagesSquare,
   },
 ];
 

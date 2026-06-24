@@ -99,8 +99,8 @@ export default function Home() {
         </h1>
 
         <h1 className="border-l-3 pl-5 mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed text-zinc-800">
-          At the moment, I still don't know my niche, but I'm into cybersecurity
-          and web development. I know some basic knowledge in some programming
+          At the moment, I still don't know my niche, but I badly wanna jump into competitive programming.
+          I know some basic knowledge in some programming
           language such as C, C++, and Web Development.
         </h1>
 
