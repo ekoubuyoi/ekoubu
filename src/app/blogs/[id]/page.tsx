@@ -87,7 +87,7 @@ export default function BlogDetailPage({ params }: PageProps) {
                         
                         [&_.blog-img2]:w-full [&_.blog-img2]:h-44 sm:[&_.blog-img2]:h-64 md:[&_.blog-img2]:h-80 [&_.blog-img2]:object-contain [&_.blog-img2]:bg-black [&_.blog-img2]:overflow-hidden [&_.blog-img2]:rounded-xl [&_.blog-img2]:border-[3px] [&_.blog-img2]:border-black
                         
-                        [&_.blog-note]:text-[#983D3C] [&_.blog-note]:italic
+                        [&_.blog-note]:text-[#983D3C] [&_.blog-note]:block [&_.blog-note]:border-l-[4px] [&_.blog-note]:border-[#983D3C] [&_.blog-note]:pl-3 [&_.blog-note]:py-2
                         
                         [&_.blog-date]:text-zinc-700 [&_.blog-date]:block [&_.blog-date]:text-end [&_.blog-date]:border-l-[4px] [&_.blog-date]:border-black 
                         

@@ -32,5 +32,15 @@ export const projects: Project[] = [
     tags: ["Next.js", "Tailwind", "TypeScript"],
     github: "https://github.com/matchaejayyy/Computer-Programming-2-",
   },
-  // Add more projects here
+  
+  {
+    id: "3",
+    title: "Ragbot AI",
+    description: "Full-stack web application that empowers barangay officials and residents with tools for disaster preparedness, emergency response coordination, and community management",
+    slug: "example-project",
+    image: "/images/project-3/ragbot.png",
+    date: "2026-03-20",
+    tags: ["Next.js", "Tailwind", "TypeScript"],
+    github: "https://github.com/ekoubuyoi/Ragbot",
+  },
 ];
