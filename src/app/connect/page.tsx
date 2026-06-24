@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import { Undo2, Redo2 } from "lucide-react";
 import { saveDoodle, getDoodles } from "../actions";
 
 const PALETTE_COLORS = [
@@ -28,7 +29,7 @@ export default function ConnectPage() {
   const [currentColor, setCurrentColor] = useState("#000000");
   const [isEraser, setIsEraser] = useState(false);
 
-  // Mobile: draw mode toggle — disabled by default so page scrolling works first
+  // Mobile: draw mode — auto-enabled when user touches the canvas
   const [drawMode, setDrawMode] = useState(false);
 
   // Undo / Redo history stacks
@@ -121,8 +122,10 @@ export default function ConnectPage() {
   const isTouchEvent = (e: any): boolean => 'touches' in e;
 
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
-    // On mobile, only draw when drawMode is active
-    if (isTouchEvent(e) && !drawMode) return;
+    // On mobile, auto-enable draw mode on first touch
+    if (isTouchEvent(e) && !drawMode) {
+      setDrawMode(true);
+    }
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -279,16 +282,6 @@ export default function ConnectPage() {
             </div>
 
             <div className="flex items-center gap-2">
-              {/* Mobile Draw Mode Toggle */}
-              <button
-                type="button"
-                onClick={() => setDrawMode((prev) => !prev)}
-                className={`border-[3px] border-black rounded-xl px-3 py-1 text-xs uppercase transition-colors tracking-tight sm:hidden ${
-                  drawMode ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-200'
-                }`}
-              >
-                {drawMode ? '✏️ Draw' : 'Scroll'}
-              </button>
               <button
                 type="button"
                 onClick={() => setIsEraser(true)}
@@ -338,7 +331,7 @@ export default function ConnectPage() {
                 className="border-[3px] border-black rounded-xl px-3 py-1 text-xs font-bold uppercase tracking-tight bg-white text-black hover:bg-gray-200 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 title="Undo"
               >
-                ↩
+                <Undo2 size={14} />
               </button>
               <button 
                 type="button" 
@@ -347,7 +340,7 @@ export default function ConnectPage() {
                 className="border-[3px] border-black rounded-xl px-3 py-1 text-xs font-bold uppercase tracking-tight bg-white text-black hover:bg-gray-200 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 title="Redo"
               >
-                ↪
+                <Redo2 size={14} />
               </button>
               <button 
                 type="button" 
