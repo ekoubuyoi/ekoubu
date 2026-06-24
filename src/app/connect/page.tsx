@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { Undo2, Redo2 } from "lucide-react";
+import { Undo2 } from "lucide-react";
 import { saveDoodle, getDoodles } from "../actions";
 
 const PALETTE_COLORS = [
@@ -29,12 +29,11 @@ export default function ConnectPage() {
   const [currentColor, setCurrentColor] = useState("#000000");
   const [isEraser, setIsEraser] = useState(false);
 
-  // Mobile: draw mode — auto-enabled when user touches the canvas
+  // Mobile: draw mode toggle
   const [drawMode, setDrawMode] = useState(false);
 
-  // Undo / Redo history stacks
+  // Undo history stack
   const undoStackRef = useRef<ImageData[]>([]);
-  const redoStackRef = useRef<ImageData[]>([]);
 
   // Fetch existing doodles on page load
   useEffect(() => {
@@ -49,6 +48,16 @@ export default function ConnectPage() {
       }
     }
     loadInitialData();
+  }, []);
+
+  // Save initial blank canvas state so undo can go all the way back
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    // Push the blank state so first undo brings back a clean canvas
+    undoStackRef.current.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
   }, []);
 
   // Sync canvas brush context whenever tool parameters change
@@ -73,11 +82,9 @@ export default function ConnectPage() {
     if (!ctx) return;
 
     undoStackRef.current.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
-    if (undoStackRef.current.length > MAX_HISTORY) {
+    if (undoStackRef.current.length > MAX_HISTORY + 1) {
       undoStackRef.current.shift();
     }
-    // Clear redo stack on new stroke
-    redoStackRef.current = [];
   }, []);
 
   const undo = useCallback(() => {
@@ -85,25 +92,14 @@ export default function ConnectPage() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    if (undoStackRef.current.length === 0) return;
+    // Need at least a saved state + a previous state to restore to
+    if (undoStackRef.current.length <= 1) return;
 
-    const snapshot = undoStackRef.current.pop()!;
-    // Save current state to redo stack
-    redoStackRef.current.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
-    ctx.putImageData(snapshot, 0, 0);
-  }, []);
-
-  const redo = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    if (redoStackRef.current.length === 0) return;
-
-    const snapshot = redoStackRef.current.pop()!;
-    // Save current state to undo stack
-    undoStackRef.current.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
-    ctx.putImageData(snapshot, 0, 0);
+    // Pop the current state from the stack
+    undoStackRef.current.pop()!;
+    // Restore the state before it (the new top of the stack)
+    const prevState = undoStackRef.current[undoStackRef.current.length - 1];
+    ctx.putImageData(prevState, 0, 0);
   }, []);
 
   // ---- Drawing logic ----
@@ -122,10 +118,8 @@ export default function ConnectPage() {
   const isTouchEvent = (e: any): boolean => 'touches' in e;
 
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
-    // On mobile, auto-enable draw mode on first touch
-    if (isTouchEvent(e) && !drawMode) {
-      setDrawMode(true);
-    }
+    // On mobile, only draw when drawMode is active
+    if (isTouchEvent(e) && !drawMode) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -169,8 +163,6 @@ export default function ConnectPage() {
     // Save current state for undo before clearing
     saveSnapshot();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // Clear redo stack since we've moved to a new state
-    redoStackRef.current = [];
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -196,9 +188,8 @@ export default function ConnectPage() {
         setComment("");
         setName("");
         clearCanvas();
-        // Clear history stacks after submit
+        // Reset history after submit
         undoStackRef.current = [];
-        redoStackRef.current = [];
       } else {
         alert("Oops! Could not save your doodle: " + result.error);
       }
@@ -282,6 +273,16 @@ export default function ConnectPage() {
             </div>
 
             <div className="flex items-center gap-2">
+              {/* Mobile draw mode toggle — only visible on small screens */}
+              <button
+                type="button"
+                onClick={() => setDrawMode((prev) => !prev)}
+                className={`border-[3px] border-black rounded-xl px-3 py-1 text-xs uppercase transition-colors tracking-tight sm:hidden ${
+                  drawMode ? 'bg-black text-white' : 'bg-white text-black hover:bg-gray-200'
+                }`}
+              >
+                {drawMode ? 'Click to Scroll' : 'Click to Draw'}
+              </button>
               <button
                 type="button"
                 onClick={() => setIsEraser(true)}
@@ -323,24 +324,15 @@ export default function ConnectPage() {
           {/* Control Footer */}
           <div className="flex justify-between items-center border-t-[3px] border-black p-2 bg-white">
             <div className="flex items-center gap-2">
-              {/* Undo / Redo */}
+              {/* Undo */}
               <button 
                 type="button" 
                 onClick={undo}
-                disabled={submitting || undoStackRef.current.length === 0}
+                disabled={submitting || undoStackRef.current.length <= 1}
                 className="border-[3px] border-black rounded-xl px-3 py-1 text-xs font-bold uppercase tracking-tight bg-white text-black hover:bg-gray-200 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                 title="Undo"
               >
                 <Undo2 size={14} />
-              </button>
-              <button 
-                type="button" 
-                onClick={redo}
-                disabled={submitting || redoStackRef.current.length === 0}
-                className="border-[3px] border-black rounded-xl px-3 py-1 text-xs font-bold uppercase tracking-tight bg-white text-black hover:bg-gray-200 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-                title="Redo"
-              >
-                <Redo2 size={14} />
               </button>
               <button 
                 type="button" 
