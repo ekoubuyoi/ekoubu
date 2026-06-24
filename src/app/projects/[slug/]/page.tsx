@@ -10,7 +10,7 @@ export default async function ProjectDetailPage({ params }: { params: { slug: st
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col bg-white px-16 py-32 min-h-screen">
+    <main className="mx-auto flex w-full max-w-3xl flex-col bg-white px-16 sm:pt-10 pb-22 sm:pb-8 min-h-screen">
       <Link href="/projects" className="text-sm text-muted-foreground hover:text-primary mb-8 inline-block">
         ← Back to Projects
       </Link>

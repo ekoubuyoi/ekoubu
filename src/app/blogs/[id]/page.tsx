@@ -28,7 +28,7 @@ export default function BlogDetailPage({ params }: PageProps) {
     }
 
     return (
-        <main className="mx-auto flex w-full max-w-3xl flex-col bg-white px-4 sm:px-10 md:px-10 pt-6 sm:pt-24 md:pt-20 pb-6 min-h-screen">
+        <main className="mx-auto flex w-full max-w-3xl flex-col bg-white px-4 sm:px-10 md:px-10 pt-6 sm:pt-24 md:pt-20 pb-22 sm:pb-6 min-h-screen">
             <div className="flex flex-col w-full">
                 {/* Back to Blog List Link */}
                 <Link href="/blogs" className="group mb-5 underline decoration-2 underline-offset-6 flex items-center text-sm font-bold text-black hover:opacity-70 transition-opacity w-fit">
@@ -79,28 +79,26 @@ export default function BlogDetailPage({ params }: PageProps) {
 
                     {/* Actual Blog Content Render Block */}
                     <div
-                        className="whitespace-pre-line text-sm sm:text-md font-md leading-relaxed tracking-wide antialiased pb-6 border-b-[3px] border-black break-words overflow-x-hidden
+                        className="whitespace-pre-line text-base leading-relaxed tracking-wide antialiased pb-6 border-b-[3px] border-black break-words overflow-x-hidden
+                        
                         [&_blockquote]:border-l-[4px] [&_blockquote]:border-black [&_blockquote]:pl-3 sm:[&_blockquote]:pl-4 [&_blockquote]:my-1 [&_blockquote]:italic [&_blockquote]:font-bold [&_blockquote]:text-sm sm:[&_blockquote]:text-base
                         
-                        [&_.blog-inline-img]:w-full 
-                        [&_.blog-inline-img]:h-full
-                        sm:[&_.blog-inline-img]:h-full
-                        md:[&_.blog-inline-img]:h-full
-                        [&_.blog-inline-img]:object-cover 
-                        [&_.blog-inline-img]:overflow-hidden 
-                        [&_.blog-inline-img]:rounded-xl 
-                        [&_.blog-inline-img]:border-[3px] 
-                        [&_.blog-inline-img]:border-black
+                        [&_.blog-inline-img]:w-full [&_.blog-inline-img]:h-full sm:[&_.blog-inline-img]:h-full md:[&_.blog-inline-img]:h-full [&_.blog-inline-img]:object-cover [&_.blog-inline-img]:overflow-hidden [&_.blog-inline-img]:rounded-xl [&_.blog-inline-img]:border-[3px] [&_.blog-inline-img]:border-black
                         
-                        [&_.blog-note]:text-[#983D3C] 
-                        [&_.blog-note]:inline-block"
+                        [&_.blog-img2]:w-full [&_.blog-img2]:h-44 sm:[&_.blog-img2]:h-64 md:[&_.blog-img2]:h-80 [&_.blog-img2]:object-contain [&_.blog-img2]:bg-black [&_.blog-img2]:overflow-hidden [&_.blog-img2]:rounded-xl [&_.blog-img2]:border-[3px] [&_.blog-img2]:border-black
+                        
+                        [&_.blog-note]:text-[#983D3C] [&_.blog-note]:italic
+                        
+                        [&_.blog-date]:text-zinc-700 [&_.blog-date]:block [&_.blog-date]:text-end [&_.blog-date]:border-l-[4px] [&_.blog-date]:border-black 
+                        
+                        [&_.blog-title]:block [&_.blog-title]:text-lg [&_.blog-title]:text-start [&_.blog-title]:border-l-[4px] [&_.blog-title]:pl-3 [&_.blog-title]:border-black "
                         dangerouslySetInnerHTML={{ __html: blog.content }}
                     />
 
-                    {/* Footer Section */}
+                    {/* Footer SectionA */}
                     <footer className="mt-1 mb-13 sm:mb-0 pt-2 flex flex-row items-center justify-between gap-4 w-full">
                         <div className="flex flex-col gap-1 text-left">
-                            <h4 className="font-bold text-black text-sm sm:text-base">Thanks for reading!</h4>
+                            <h4 className="font-bold text-black text-sm sm:text-base">thanks for reading</h4>
                             <p className="text-xs text-zinc-500">built with next.js + tailwind</p>
                         </div>
                         
