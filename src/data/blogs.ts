@@ -71,7 +71,7 @@ Honestly, I'm laughing at myself cause I be like daily-driving a 2nd-gen i5 in 2
 `,
     },
 
-    {
+    /*{
         id: "2",
         title: "AI Fest - Anilag",
         description: "documentation of our game",
@@ -81,5 +81,5 @@ Honestly, I'm laughing at myself cause I be like daily-driving a 2nd-gen i5 in 2
         content: `<div class="blog-note"><b>Note: This blog is still a work in progress!</b></div>
         Heloo World
         `,
-    },
+    },*/
 ];
