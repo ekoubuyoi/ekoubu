@@ -1,11 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
 import { projects } from "@/data/projects";
 import { blogs } from "@/data/blogs";
+import PageTransition from "@/components/PageTransition";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function Home() {
-  // Merge projects and blogs into a single recent feed, sorted by date descending
+  const { ref: heroRef, isVisible: heroVisible } = useScrollReveal(0.2);
+  const { ref: recentsRef, isVisible: recentsVisible } = useScrollReveal(0.1);
+  // Merge projects and blogs into recent feed, sorted by date descending
   const recentItems = [
     ...projects.map((p) => ({
       id: p.id,
@@ -32,9 +38,17 @@ export default function Home() {
     .slice(0, 2);
 
   return (
-    <main className="mx-auto flex w-full max-w-3xl flex-col items-start justify-between bg-white px-10 sm:px-10 md:px-10 pt-6 sm:pt-24 md:pt-20 pb-14 sm:pb-8">
-      {/* pfp and text info */}
-      <div className="flex items-center justify-between sm:mt-6 mt-2 w-full">
+    <PageTransition>
+      <main className="mx-auto flex w-full max-w-3xl flex-col items-start justify-between bg-white px-10 sm:px-10 md:px-10 pt-6 sm:pt-24 md:pt-20 pb-14 sm:pb-8">
+        {/* pfp and text info */}
+        <div
+          ref={heroRef}
+          className={`flex items-center justify-between sm:mt-6 mt-2 w-full transition-all duration-700 ease-out ${
+            heroVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6"
+          }`}
+        >
         {/* pfp + name */}
         <div className="flex items-center gap-5">
           {/* pfp */}
@@ -64,7 +78,7 @@ export default function Home() {
             href="https://github.com/ekoubuyoi"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm sm:text-base font-medium text-zinc-700 underline underline-offset-4 decoration-zinc-400 hover:text-black hover:decoration-black transition-colors"
+            className="text-sm sm:text-base font-medium text-zinc-700 underline underline-offset-4 decoration-zinc-400 hover:text-black hover:decoration-black transition-all duration-200 hover:translate-x-1"
           >
             github ↗
           </a>
@@ -74,7 +88,7 @@ export default function Home() {
             href="/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm sm:text-base font-medium text-zinc-700 underline underline-offset-4 decoration-zinc-400 hover:text-black hover:decoration-black transition-colors"
+            className="text-sm sm:text-base font-medium text-zinc-700 underline underline-offset-4 decoration-zinc-400 hover:text-black hover:decoration-black transition-all duration-200 hover:translate-x-1"
           >
             resume ↗
           </a>
@@ -82,9 +96,16 @@ export default function Home() {
       </div>
 
       {/* other stuffs/info */}
-      <div className="py-8 w-full">
-        {/* note */}
-        <h1 className="border-l-3 pl-5 border-[#983D3C] text-[#983D3C] text-base sm:text-lg leading-relaxed">
+        <div
+          ref={recentsRef}
+          className={`py-8 w-full transition-all duration-700 ease-out ${
+            recentsVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6"
+          }`}
+        >
+          {/* note */}
+          <h1 className="border-l-3 pl-5 border-[#983D3C] text-[#983D3C] text-base sm:text-lg leading-relaxed">
           Note: This website is still a work in progress! Some feature might not
           work properly, sorry for the inconvenience. I'll fix it soon :&gt;
         </h1>
@@ -119,9 +140,12 @@ export default function Home() {
           .
         </h1>
 
-        {/* recent list — mixes projects & blogs */}
-        <div className="py-6 w-full flex flex-col gap-6">
-          <h1 className="text-xl underline decoration-2 underline-offset-5 sm:text-2xl font-bold"> Recents </h1>
+          {/* recent list — mixes projects & blogs */}
+          <div className="py-6 w-full flex flex-col gap-6 stagger-children">
+            <h1 className="text-xl underline decoration-2 underline-offset-5 sm:text-2xl font-bold animate-fade-in-up">
+              {" "}
+              Recents{" "}
+            </h1>
 
           {recentItems.length > 0 ? (
             recentItems.map((item) => {
@@ -136,7 +160,7 @@ export default function Home() {
                   key={`${item.type}-${item.id}`}
                   href={item.href}
                   {...extraProps}
-                  className="block border-[3px] border-black p-6 rounded-xl bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none"
+                  className="block border-[3px] border-black p-6 rounded-xl bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300 ease-out hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none animate-fade-in-up"
                 >
                   <div className="flex flex-col gap-2">
                     <div className="flex flex-wrap gap-1.5">
@@ -170,5 +194,6 @@ export default function Home() {
         </div>
       </div>
     </main>
+    </PageTransition>
   );
 }
