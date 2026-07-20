@@ -90,7 +90,6 @@ export default function ProjectsPage() {
         <div className="absolute left-0 top-full mt-2 w-full">
           <UnrollingScroll
             isOpen={isOpen}
-            onToggle={() => setIsOpen(!isOpen)}
             duration={300}
             contentClassName="border-[3px] border-black rounded-xl bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]"
           >
