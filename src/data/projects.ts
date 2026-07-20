@@ -47,15 +47,4 @@ export const projects: Project[] = [
     github: "https://github.com/ekoubuyoi/Ragbot",
   },
 
-  {
-    id: "4",
-    title: "lenglong",
-    description: "made this for my gf <3",
-    slug: "example-project",
-    image: "/images/project-4/ling.jpg",
-    date: "2026-02-15",
-    tags: ["soom of it"],
-    link: "https://bukonatnatcoconut.itch.io/abubububu",
-    github: "https://bukonatnatcoconut.itch.io/abubububu",
-  },
 ];

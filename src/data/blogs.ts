@@ -71,15 +71,19 @@ Honestly, I'm laughing at myself cause I be like daily-driving a 2nd-gen i5 in 2
 `,
     },
 
-    /*{
+    {
         id: "2",
-        title: "AI Fest - Anilag",
-        description: "documentation of our game",
+        title: "Diving C++",
+        description: "diving c++",
         image: "/images/blog-3/blog3.jpg",
         date: "2026-06-24",
-        tags: ["Documentation", "Hackathon"],
+        tags: ["Blog"],
         content: `<div class="blog-note"><b>Note: This blog is still a work in progress!</b></div>
-        Heloo World
+        I'm currently stuck if saying that 'I will study' but stopping midway, because I'm losing my drive of doing it. Well, yesterday I decided that 'I will study' too, even last week, last month and more. I noticed that it is time to break the cycle and just study seriously and efficiently and also having fun at the same time.
+
+        I've thinking of how will i start this, including the approach, the way of doing it, and more.
+ 
+        For now, I will change my mindset first. From "Learn smarter, not harder" to "Learn deeply and slowly". I mean yeah, learning smartly will save your time but it's not effective for me. I am a type of person that will make simple things hard, then I will ended up being drained or sum. So, I’m just going to take it slow and remember that even a small step is still progress, right?
         `,
-    },*/
+    },
 ];

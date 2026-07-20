@@ -125,12 +125,6 @@ export default function Home() {
           language such as C, C++, and Web Development.
         </h1>
 
-        <h1 className="border-l-3 pl-5 mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed text-zinc-800">
-          I'm a total tech geek at heart who loves linux. One of my dreams is to
-          build raspberry pi typa shi cyberdeck in the future just only for my
-          satisfaction.
-        </h1>
-
         <h1 className="border-l-3 pl-5 mb-1 mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed text-zinc-800">
           Sometimes, I write something about techs or sum stuffs when I am
           bored. You can check it if u like at my {}

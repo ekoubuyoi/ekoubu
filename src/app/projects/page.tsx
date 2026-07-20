@@ -10,7 +10,7 @@ import UnrollingScroll from "@/components/UnrollingScroll";
 export default function ProjectsPage() {
   const { ref: headerRef, isVisible: headerVisible } = useScrollReveal(0.2);
   const { ref: gridRef, isVisible: gridVisible } = useScrollReveal(0.1);
-  const customFilters = ["All", "Web", "Games", "soom of it"];
+  const customFilters = ["All", "Web", "Games"];
 
   // Filter and dropdown state
   const [activeTag, setActiveTag] = useState("All");
