@@ -71,6 +71,7 @@ Honestly, I'm laughing at myself cause I be like daily-driving a 2nd-gen i5 in 2
 `,
     },
 
+    /*
     {
         id: "2",
         title: "Diving C++",
@@ -85,5 +86,7 @@ Honestly, I'm laughing at myself cause I be like daily-driving a 2nd-gen i5 in 2
  
         For now, I will change my mindset first. From "Learn smarter, not harder" to "Learn deeply and slowly". I mean yeah, learning smartly will save your time but it's not effective for me. I am a type of person that will make simple things hard, then I will ended up being drained or sum. So, I’m just going to take it slow and remember that even a small step is still progress, right?
         `,
-    },
+    },*/ 
+
+    
 ];
